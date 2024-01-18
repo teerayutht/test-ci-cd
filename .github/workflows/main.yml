@@ -14,6 +14,8 @@ jobs:
 
     - name: CentOS 7 - Build an RPM
       uses: ianabc/github-action-rpmbuild@v0.1.1
+      with:
+        spec_file: SPECS/my.spec
 
     - name: Set up Docker
       uses: docker/setup-buildx-action@v1
