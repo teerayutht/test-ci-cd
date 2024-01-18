@@ -1,0 +1,19 @@
+version: '3'
+services:
+  testcicd:
+    build:
+      context: "."
+      dockerfile: Dockerfile
+    container_name: test-ci-cd
+    ports:
+      - "9000:9000"
+
+  nginxcicd:
+    build: "./nginx"
+    container_name: nginx_ci_cd
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - testcicd
