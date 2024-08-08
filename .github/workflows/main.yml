@@ -51,19 +51,7 @@ jobs:
         push: false
         load: true
 
-    - name: Pull CentOS 7 Image
-      run: docker pull centos:7
-
-    - name: Install Docker Compose on CentOS 7
-      run: |
-        docker run -d --name centos7 centos:7
-        docker exec centos7 yum update -y
-        docker exec centos7 yum install -y epel-release
-        docker exec centos7 yum install -y python3-pip
-        docker exec centos7 pip3 install docker-compose
-
     - name: Run Docker Compose
       run: |
         docker cp . centos7:/workspace
         docker exec -w /workspace centos7 docker-compose up -d --build
-
